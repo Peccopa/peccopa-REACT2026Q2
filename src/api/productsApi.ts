@@ -12,21 +12,20 @@ export type ProductsResponse = {
 };
 
 export async function fetchProducts(
-  search: string,
-  limit: number,
-  skip: number
+  search: string = '',
+  limit: number = 10,
+  skip: number = 0
 ): Promise<ProductsResponse> {
-  const trimmedSearch = search.trim();
+  const rawSearch = search.trim();
+  const encoded = encodeURIComponent(rawSearch);
 
-  const url = trimmedSearch
-    ? `${API_URL}/search?q=${encodeURIComponent(trimmedSearch)}&limit=${limit}&skip=${skip}`
+  const url = encoded
+    ? `${API_URL}/search?q=${encoded}&limit=${limit}&skip=${skip}`
     : `${API_URL}?limit=${limit}&skip=${skip}`;
 
   const response = await fetch(url);
+  if (!response.ok) throw new Error('Failed to fetch products');
+  const data: ProductsResponse = await response.json();
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch products');
-  }
-
-  return response.json();
+  return data;
 }
