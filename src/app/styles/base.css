@@ -1,0 +1,140 @@
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+#root {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+h1 {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-4);
+}
+
+h2 {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--space-3);
+}
+
+h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-2);
+}
+
+p {
+  margin-bottom: var(--space-3);
+  color: var(--color-muted);
+}
+
+a {
+  color: var(--color-primary);
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+button {
+  min-height: var(--space-8);
+
+  will-change: transform;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--space-1) var(--space-3);
+
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+
+  color: var(--button-text);
+  background-color: var(--color-primary);
+
+  border: none;
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+button:active {
+  box-shadow: var(--shadow-inset-sm);
+  transform: scale(0.97) translateY(1px);
+}
+
+button:focus-visible {
+  outline: none;
+  box-shadow: var(--button-shadow-focus);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+input {
+  will-change: border-color, box-shadow;
+
+  width: 100%;
+
+  padding: var(--space-2) var(--space-3);
+
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+
+  color: var(--color-text);
+  background-color: var(--input-bg);
+
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+
+  outline: none;
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition);
+}
+
+input::placeholder {
+  color: var(--input-placeholder);
+}
+
+input:focus {
+  border-color: var(--input-border-focus);
+  box-shadow: var(--input-shadow-focus);
+}
+
+input:hover {
+  border-color: var(--color-primary-hover);
+}
+
+input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+input.error {
+  border-color: var(--color-danger);
+}

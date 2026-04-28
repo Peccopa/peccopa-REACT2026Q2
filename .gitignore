@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#dev-notes
+_dev-notes-rss
+_old-files-rss

@@ -1,5 +1,5 @@
-@import './styles/reset.css';
+@import './app/styles/reset.css';
 
-@import './styles/variables.css';
+@import './app/styles/variables.css';
 
-@import './styles/base.css';
+@import './app/styles/base.css';
