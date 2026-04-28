@@ -1,9 +1,8 @@
-import type { Props, State } from './ErrorBoundary.types';
-
 import { Component } from 'react';
 
-import { TEXTS } from '../config/texts';
+import type { Props, State } from './ErrorBoundary.types';
 import { Layout } from '@/widgets';
+import { TEXTS } from '../config/texts';
 
 export class ErrorBoundary extends Component<Props, State> {
   state: State = { hasError: false };

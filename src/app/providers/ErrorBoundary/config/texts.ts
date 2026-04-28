@@ -1,6 +1,6 @@
 export const TEXTS = {
   errorBoundary: {
     title: 'Something went wrong',
-    retry: 'Try again',
+    retry: 'Try Again',
   },
 };
