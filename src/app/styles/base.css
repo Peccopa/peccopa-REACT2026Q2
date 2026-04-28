@@ -12,27 +12,25 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  max-width: var(--container);
   min-height: 100vh;
-
-  padding: var(--space-4);
-  margin: 0 auto;
 }
 
 h1 {
   font-size: var(--fs-2xl);
   margin-bottom: var(--space-4);
+  text-align: center;
 }
 
 h2 {
   font-size: var(--fs-xl);
   margin-bottom: var(--space-3);
+  text-align: center;
 }
 
 h3 {
   font-size: var(--fs-lg);
   margin-bottom: var(--space-2);
+  text-align: center;
 }
 
 p {

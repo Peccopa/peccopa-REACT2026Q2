@@ -1,0 +1,9 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  max-width: var(--container);
+  padding: var(--space-4);
+}
