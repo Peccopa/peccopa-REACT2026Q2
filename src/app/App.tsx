@@ -1,9 +1,13 @@
 import { Component } from 'react';
-
-import styles from './App.module.css';
+import { ErrorBoundary } from '@/app/providers';
+import SearchPage from '@/pages/search-page/SearchPage';
 
 export default class App extends Component {
   render() {
-    return <div className={styles.app}></div>;
+    return (
+      <ErrorBoundary>
+        <SearchPage />
+      </ErrorBoundary>
+    );
   }
 }
