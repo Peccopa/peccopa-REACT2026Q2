@@ -1,3 +1,3 @@
 export type State = {
-  hasError: boolean;
+  error: false;
 };
