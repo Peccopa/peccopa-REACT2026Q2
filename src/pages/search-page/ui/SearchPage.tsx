@@ -20,7 +20,6 @@ export class SearchPage extends Component {
 
     return (
       <Layout>
-        <h1>Rolling Scopes School - React Course 2026Q2</h1>
         <SearchPanel />
         <ErrorButton onClick={this.handleSimulateError} />
       </Layout>

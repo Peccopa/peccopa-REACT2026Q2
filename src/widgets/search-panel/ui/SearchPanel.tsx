@@ -12,7 +12,20 @@ export class SearchPanel extends Component {
     this.setState({ value });
   };
 
+  handleSearch = () => {
+    const trimmed = this.state.value.trim();
+    if (!trimmed) return;
+
+    console.log(trimmed);
+  };
+
   render() {
-    return <SearchForm value={this.state.value} onChange={this.handleChange} />;
+    return (
+      <SearchForm
+        value={this.state.value}
+        onChange={this.handleChange}
+        onSearch={this.handleSearch}
+      />
+    );
   }
 }
