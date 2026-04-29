@@ -1,3 +1,5 @@
+import type { ProductsResponse } from '@/shared/api/products/products.types';
+
 export type State = {
   value: string;
 };
@@ -7,6 +9,5 @@ export type Store = {
 };
 
 export type Props = {
-  value: string;
-  onChange: (value: string) => void;
+  onSearch: (products: ProductsResponse) => void;
 };

@@ -1,11 +1,12 @@
-import type { State, Store } from './SearchPanel.types';
+import type { Props, State, Store } from './SearchPanel.types';
 
 import { Component } from 'react';
 import { SearchForm } from '@/features/search';
 import { storage } from '@/shared/lib/localStorage';
 import { STORE_KEY } from '@/shared';
+import { fetchProducts } from '@/shared/api';
 
-export class SearchPanel extends Component {
+export class SearchPanel extends Component<Props, State> {
   state: State = {
     value: '',
   };
@@ -35,6 +36,14 @@ export class SearchPanel extends Component {
     };
 
     storage.set(STORE_KEY, store);
+
+    fetchProducts({
+      search: trimmed,
+      limit: 10,
+      skip: 0,
+    }).then((products) => {
+      this.props.onSearch(products);
+    });
   };
 
   render() {
