@@ -1,12 +1,25 @@
-import type { State } from './SearchPanel.types';
+import type { State, Store } from './SearchPanel.types';
 
 import { Component } from 'react';
 import { SearchForm } from '@/features/search';
+import { storage } from '@/shared/lib/localStorage';
+import { STORE_KEY } from '@/shared';
 
 export class SearchPanel extends Component {
   state: State = {
     value: '',
   };
+
+  getStore = (): Store => {
+    return storage.get<Store>(STORE_KEY, { search: '' });
+  };
+
+  componentDidMount(): void {
+    const store = this.getStore();
+    this.setState({
+      value: store.search ?? '',
+    });
+  }
 
   handleChange = (value: string) => {
     this.setState({ value });
@@ -16,7 +29,12 @@ export class SearchPanel extends Component {
     const trimmed = this.state.value.trim();
     if (!trimmed) return;
 
-    console.log(trimmed);
+    const store = {
+      ...this.getStore(),
+      search: trimmed,
+    };
+
+    storage.set(STORE_KEY, store);
   };
 
   render() {
