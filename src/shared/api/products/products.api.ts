@@ -1,13 +1,12 @@
 import type { ProductsRequest, ProductsResponse } from './products.types';
 import { API_URL } from '@/shared';
 
-export async function fetchProducts({
+export async function fetchProductsApi({
   search,
   limit,
   skip,
 }: ProductsRequest): Promise<ProductsResponse> {
   const rawSearch = search.trim();
-
   const url = new URL(rawSearch ? `${API_URL}/search` : API_URL);
 
   url.searchParams.set('limit', String(limit));
@@ -19,9 +18,9 @@ export async function fetchProducts({
 
   const response = await fetch(url.toString());
 
-  if (!response.ok)
+  if (!response.ok) {
     throw new Error(`Failed to fetch products: ${response.status}`);
+  }
 
-  const data: ProductsResponse = await response.json();
-  return data;
+  return response.json();
 }

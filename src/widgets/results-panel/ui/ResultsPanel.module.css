@@ -10,11 +10,25 @@
 
 .product {
   display: flex;
+  width: 100%;
   gap: var(--space-6);
+
+  opacity: 0;
+  transform: translateY(6px);
+
+  animation: fadeIn 0.3s ease forwards;
+  animation-delay: calc(var(--i) * 50ms);
 
   @media (max-width: 640px) {
     flex-direction: column;
     gap: var(--space-2);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -29,13 +43,14 @@
   padding: var(--space-2);
   background-color: var(--color-border);
   @media (max-width: 640px) {
-      flex: 0 0 0rem;
-      padding: 0;
+    flex: 0 0 0rem;
+    padding: 0;
   }
 }
 
 .productDescription {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
 

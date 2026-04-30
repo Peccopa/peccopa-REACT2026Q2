@@ -17,11 +17,13 @@ export class SearchPanel extends Component<Props, State> {
 
   componentDidMount(): void {
     const store = this.getStore();
-    this.setState({
-      value: store.search ?? '',
-    });
 
-    this.handleSearch();
+    this.setState(
+      {
+        value: store.search ?? '',
+      },
+      () => this.handleSearch()
+    );
   }
 
   handleChange = (value: string) => {
@@ -30,8 +32,6 @@ export class SearchPanel extends Component<Props, State> {
 
   handleSearch = () => {
     const trimmed = this.state.value.trim();
-
-    // if (!trimmed) return;
 
     const store = {
       ...this.getStore(),
