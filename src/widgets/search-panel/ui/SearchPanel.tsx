@@ -20,6 +20,8 @@ export class SearchPanel extends Component<Props, State> {
     this.setState({
       value: store.search ?? '',
     });
+
+    this.handleSearch();
   }
 
   handleChange = (value: string) => {
@@ -28,7 +30,8 @@ export class SearchPanel extends Component<Props, State> {
 
   handleSearch = () => {
     const trimmed = this.state.value.trim();
-    if (!trimmed) return;
+
+    // if (!trimmed) return;
 
     const store = {
       ...this.getStore(),
@@ -43,6 +46,7 @@ export class SearchPanel extends Component<Props, State> {
       skip: 0,
     }).then((products) => {
       this.props.onSearch(products);
+      console.log('fetchProducts');
     });
   };
 

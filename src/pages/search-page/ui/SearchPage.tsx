@@ -6,27 +6,36 @@ import { Layout, SearchPanel } from '@/widgets';
 import { ErrorButton } from '@/features';
 import { TEXTS } from '../config/texts';
 import type { ProductsResponse } from '@/shared/api/products/products.types';
+import { ResultsPanel } from '@/widgets/results-panel';
 
 export class SearchPage extends Component {
   state: State = {
-    products: null,
-    error: false,
+    products: [],
+    isLoading: false,
+    isError: false,
   };
 
   handleSimulateError = () => {
-    this.setState({ error: true });
+    this.setState({ isError: true });
   };
 
   handleSearch = (products: ProductsResponse) => {
-    this.setState({ products }, () => console.log(this.state));
+    this.setState({ products: products.products }, () =>
+      console.log(this.state.products)
+    );
   };
 
   render() {
-    if (this.state.error) throw new Error(TEXTS.simulateError.error);
+    if (this.state.isError) throw new Error(TEXTS.simulateError.error);
 
     return (
       <Layout>
         <SearchPanel onSearch={this.handleSearch} />
+        <ResultsPanel
+          products={this.state.products}
+          isLoading={this.state.isLoading}
+          isError={this.state.isError}
+        />
         <ErrorButton onClick={this.handleSimulateError} />
       </Layout>
     );
