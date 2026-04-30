@@ -5,8 +5,11 @@ import { SearchForm } from '@/features/search';
 import { storage } from '@/shared/lib/localStorage';
 import { STORE_KEY } from '@/shared';
 import { fetchProducts } from '@/shared/api';
+import { SEARCH_PAGE_LIMIT } from '../config/constants';
 
 export class SearchPanel extends Component<Props, State> {
+  private isFirstSearch = true;
+
   state: State = {
     value: '',
   };
@@ -31,22 +34,32 @@ export class SearchPanel extends Component<Props, State> {
   };
 
   handleSearch = () => {
-    const trimmed = this.state.value.trim();
+    const raw = this.state.value;
+    const trimmed = raw.trim();
 
-    const store = {
-      ...this.getStore(),
-      search: trimmed,
-    };
+    const store = this.getStore();
+    const prevSearch = store.search ?? '';
 
-    storage.set(STORE_KEY, store);
+    if (raw !== trimmed) {
+      this.setState({ value: trimmed });
+    }
+
+    if (!this.isFirstSearch && trimmed === prevSearch) {
+      return;
+    }
+
+    this.isFirstSearch = false;
+
+    storage.set(STORE_KEY, { ...store, search: trimmed });
+
+    const hasSearch = trimmed.length > 0;
 
     fetchProducts({
       search: trimmed,
-      limit: 10,
+      limit: hasSearch ? SEARCH_PAGE_LIMIT : 0,
       skip: 0,
     }).then((products) => {
       this.props.onSearch(products);
-      console.log('fetchProducts');
     });
   };
 

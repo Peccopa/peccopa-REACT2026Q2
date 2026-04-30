@@ -11,7 +11,6 @@ export class SearchForm extends Component<Props> {
 
   handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // if (!this.props.value) return;
 
     this.props.onSearch();
   };

@@ -7,18 +7,24 @@ const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 export async function fetchProductsMock(
   params: ProductsRequest
 ): Promise<ProductsResponse> {
-  await delay(400);
+  await delay(1000);
 
   const { search, limit, skip } = params;
 
-  const filtered = search.trim()
+  const normalizedSearch = search.trim().toLowerCase();
+
+  const filtered = normalizedSearch
     ? mockProducts.filter((p) =>
-        p.title.toLowerCase().includes(search.toLowerCase())
+        p.title.toLowerCase().includes(normalizedSearch)
       )
     : mockProducts;
 
+  const isAll = limit === 0;
+
+  const paginated = isAll ? filtered : filtered.slice(skip, skip + limit);
+
   return {
-    products: filtered.slice(skip, skip + limit),
+    products: paginated,
     total: filtered.length,
     limit,
     skip,
