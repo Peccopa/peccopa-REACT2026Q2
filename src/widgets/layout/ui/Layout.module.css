@@ -6,7 +6,7 @@
   gap: var(--space-12);
 
   max-width: var(--container);
-  height: 100vh;
+  min-height: 100vh;
 
   padding: var(--space-4);
 }

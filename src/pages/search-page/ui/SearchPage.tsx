@@ -20,9 +20,7 @@ export class SearchPage extends Component {
   };
 
   handleSearch = (products: ProductsResponse) => {
-    this.setState({ products: products.products }, () =>
-      console.log(this.state.products)
-    );
+    this.setState({ products: products.products });
   };
 
   render() {
