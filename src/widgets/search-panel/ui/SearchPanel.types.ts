@@ -10,4 +10,5 @@ export type Store = {
 
 export type Props = {
   onSearch: (products: ProductsResponse) => void;
+  onLoading: (value: boolean) => void;
 };

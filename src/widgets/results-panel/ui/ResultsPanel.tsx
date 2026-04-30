@@ -3,6 +3,7 @@ import type { Props, StyleWithVars } from './ResultsPanel.types';
 import { Component } from 'react';
 
 import styles from './ResultsPanel.module.css';
+import { LoadIndicator } from '@/features/load-indicator/LoadIndicator';
 
 export class ResultsPanel extends Component<Props> {
   getStyle = (index: number): StyleWithVars => ({
@@ -12,7 +13,7 @@ export class ResultsPanel extends Component<Props> {
   render() {
     const { products, isLoading, isError } = this.props;
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <LoadIndicator />;
     if (isError) return <div>{isError}</div>;
     if (products.length === 0) return <div>No results</div>;
 

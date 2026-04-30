@@ -23,12 +23,19 @@ export class SearchPage extends Component {
     this.setState({ products: products.products });
   };
 
+  handleLoading = (isLoading: boolean) => {
+    this.setState({ isLoading });
+  };
+
   render() {
     if (this.state.isError) throw new Error(TEXTS.simulateError.error);
 
     return (
       <Layout>
-        <SearchPanel onSearch={this.handleSearch} />
+        <SearchPanel
+          onSearch={this.handleSearch}
+          onLoading={this.handleLoading}
+        />
         <ResultsPanel
           products={this.state.products}
           isLoading={this.state.isLoading}

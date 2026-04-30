@@ -54,13 +54,19 @@ export class SearchPanel extends Component<Props, State> {
 
     const hasSearch = trimmed.length > 0;
 
+    this.props.onLoading(true);
+
     fetchProducts({
       search: trimmed,
       limit: hasSearch ? SEARCH_PAGE_LIMIT : 0,
       skip: 0,
-    }).then((products) => {
-      this.props.onSearch(products);
-    });
+    })
+      .then((products) => {
+        this.props.onSearch(products);
+      })
+      .finally(() => {
+        this.props.onLoading(false);
+      });
   };
 
   render() {
