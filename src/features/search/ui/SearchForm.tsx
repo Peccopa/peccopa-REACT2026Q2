@@ -1,7 +1,7 @@
 import type { Props } from './SearchForm.types';
 
 import React, { Component } from 'react';
-import { Button } from '@/shared';
+import { Button, Input } from '@/shared';
 
 import { TEXTS } from '../config/texts';
 import styles from './SearchForm.module.css';
@@ -20,7 +20,7 @@ export class SearchForm extends Component<Props> {
   render() {
     return (
       <form className={styles.searchForm} onSubmit={this.handleSubmit}>
-        <input
+        <Input
           type="text"
           id="form-input"
           value={this.props.value}
