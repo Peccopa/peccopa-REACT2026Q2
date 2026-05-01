@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styles from './LoadIndicator.module.css';
-import { TEXTS } from './config/texts';
+import { TEXTS } from './LoadIndicator.texts';
 
 export class LoadIndicator extends Component {
   render() {

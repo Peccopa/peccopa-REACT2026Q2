@@ -1,6 +1,8 @@
 import type { Props } from './SearchForm.types';
 
 import React, { Component } from 'react';
+import { Button } from '@/shared';
+
 import { TEXTS } from '../config/texts';
 import styles from './SearchForm.module.css';
 
@@ -25,7 +27,7 @@ export class SearchForm extends Component<Props> {
           placeholder={TEXTS.searchForm.placeholder}
           onChange={this.handleChange}
         />
-        <button type="submit">{TEXTS.searchForm.search}</button>
+        <Button type="submit">{TEXTS.searchForm.search}</Button>
       </form>
     );
   }
