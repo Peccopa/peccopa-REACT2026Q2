@@ -3,7 +3,7 @@ import type { Props, StyleWithVars } from './ResultsPanel.types';
 import { Component } from 'react';
 
 import styles from './ResultsPanel.module.css';
-import { LoadIndicator } from '@/features/load-indicator/LoadIndicator';
+import { LoadIndicator } from '@/shared/ui';
 
 export class ResultsPanel extends Component<Props> {
   getStyle = (index: number): StyleWithVars => ({
