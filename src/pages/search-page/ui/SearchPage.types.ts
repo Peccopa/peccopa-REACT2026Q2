@@ -4,4 +4,5 @@ export type State = {
   products: Product[] | [];
   isLoading: boolean;
   isError: boolean;
+  shouldCrash: boolean;
 };

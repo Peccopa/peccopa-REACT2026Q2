@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 import type { Props, State } from './ErrorBoundary.types';
 import { Layout } from '@/widgets';
+import styles from './ErrorBoundary.module.css';
 import { TEXTS } from '../config/texts';
 
 export class ErrorBoundary extends Component<Props, State> {
@@ -20,7 +21,7 @@ export class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <Layout>
+        <Layout className={styles.errorBoundary}>
           <h1>{TEXTS.errorBoundary.title}</h1>
           <button onClick={this.reset}>{TEXTS.errorBoundary.retry}</button>
         </Layout>

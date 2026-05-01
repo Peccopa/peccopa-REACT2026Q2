@@ -36,7 +36,6 @@ export class SearchPanel extends Component<Props, State> {
   handleSearch = () => {
     const raw = this.state.value;
     const trimmed = raw.trim();
-
     const store = this.getStore();
     const prevSearch = store.search ?? '';
 
@@ -63,6 +62,10 @@ export class SearchPanel extends Component<Props, State> {
     })
       .then((products) => {
         this.props.onSearch(products);
+        this.props.onError(false);
+      })
+      .catch(() => {
+        this.props.onError(true);
       })
       .finally(() => {
         this.props.onLoading(false);

@@ -13,10 +13,11 @@ export class SearchPage extends Component {
     products: [],
     isLoading: false,
     isError: false,
+    shouldCrash: false,
   };
 
   handleSimulateError = () => {
-    this.setState({ isError: true });
+    this.setState({ shouldCrash: true });
   };
 
   handleSearch = (products: ProductsResponse) => {
@@ -27,14 +28,19 @@ export class SearchPage extends Component {
     this.setState({ isLoading });
   };
 
+  handleError = (isError: boolean) => {
+    this.setState({ isError });
+  };
+
   render() {
-    if (this.state.isError) throw new Error(TEXTS.simulateError.error);
+    if (this.state.shouldCrash) throw new Error(TEXTS.simulateError.error);
 
     return (
       <Layout>
         <SearchPanel
           onSearch={this.handleSearch}
           onLoading={this.handleLoading}
+          onError={this.handleError}
         />
         <ResultsPanel
           products={this.state.products}

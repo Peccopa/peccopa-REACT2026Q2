@@ -14,8 +14,8 @@ export class ResultsPanel extends Component<Props> {
     const { products, isLoading, isError } = this.props;
 
     if (isLoading) return <LoadIndicator />;
-    if (isError) return <div>{isError}</div>;
-    if (products.length === 0) return <div>No results</div>;
+    if (isError) return <h3>Something went wrong. Please try again.</h3>;
+    if (products.length === 0) return <h3>No results</h3>;
 
     return (
       <ul className={styles.products}>

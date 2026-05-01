@@ -1,4 +1,3 @@
 export const config = {
-  useMock: true,
-  // useMock: false,
+  useMock: false,
 };
