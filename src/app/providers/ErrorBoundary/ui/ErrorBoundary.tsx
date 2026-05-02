@@ -3,6 +3,7 @@ import type { Props, State } from './ErrorBoundary.types';
 import { Component } from 'react';
 import { Layout } from '@/widgets';
 import { Button } from '@/shared';
+import { Text } from '@/shared';
 
 import styles from './ErrorBoundary.module.css';
 import { TEXTS } from '../config/texts';
@@ -24,7 +25,9 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <Layout className={styles.errorBoundary}>
-          <h1>{TEXTS.errorBoundary.title}</h1>
+          <Text variant="h1" size="xxl">
+            {TEXTS.errorBoundary.title}
+          </Text>
           <Button onClick={this.reset}>{TEXTS.errorBoundary.retry}</Button>
         </Layout>
       );

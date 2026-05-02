@@ -1,6 +1,7 @@
 import type { Props, StyleWithVars } from './ResultsPanel.types';
 
 import { Component } from 'react';
+import { Text } from '@/shared/ui';
 
 import styles from './ResultsPanel.module.css';
 import { LoadIndicator } from '@/shared/ui';
@@ -25,8 +26,12 @@ export class ResultsPanel extends Component<Props> {
             key={product.id}
             style={this.getStyle(index)}
           >
-            <h4 className={styles.productTitle}>{product.title}</h4>
-            <p className={styles.productDescription}>{product.description}</p>
+            <Text variant="h4" className={styles.productTitle}>
+              {product.title}
+            </Text>
+            <Text className={styles.productDescription}>
+              {product.description}
+            </Text>
           </li>
         ))}
       </ul>

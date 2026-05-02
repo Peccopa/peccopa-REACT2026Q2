@@ -10,9 +10,9 @@
   line-height: var(--lh-base);
 
   color: var(--color-text);
-  background-color: var(--input-bg);
+  background-color: var(--ui-input-bg);
 
-  border: 1px solid var(--input-border);
+  border: 1px solid var(--ui-input-border);
   border-radius: var(--radius-sm);
 
   outline: none;
@@ -24,11 +24,11 @@
 }
 
 .input::placeholder {
-  color: var(--input-placeholder);
+  color: var(--ui-input-placeholder);
 }
 
 .input:focus {
-  border-color: var(--input-border-focus);
+  border-color: var(--ui-input-border-focus);
   box-shadow: var(--input-shadow-focus);
 }
 

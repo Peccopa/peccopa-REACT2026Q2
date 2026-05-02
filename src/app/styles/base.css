@@ -15,25 +15,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: var(--fs-2xl);
-  text-align: center;
-}
-
-h2 {
-  font-size: var(--fs-xl);
-  text-align: center;
-}
-
-h3 {
-  font-size: var(--fs-lg);
-  text-align: center;
-}
-
-p {
-  color: var(--color-muted);
-}
-
 a {
   color: var(--color-primary);
   transition: color var(--transition);
