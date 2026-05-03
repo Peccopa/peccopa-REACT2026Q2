@@ -1,6 +1,6 @@
 import type { ProductsRequest, ProductsResponse } from './products.types';
 
-import { mockProducts } from './mocks/products';
+import { mockProducts } from './products.mock.data';
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 

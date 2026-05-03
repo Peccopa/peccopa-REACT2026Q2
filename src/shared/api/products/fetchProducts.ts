@@ -1,6 +1,6 @@
 // fetchProducts.ts
 import { config } from '@/shared/config/env';
-import { fetchProductsMock } from './products.mock';
+import { fetchProductsMock } from './products.mock.api';
 import { fetchProductsApi } from './products.api';
 import type { ProductsRequest, ProductsResponse } from './products.types';
 
