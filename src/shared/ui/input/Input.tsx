@@ -4,9 +4,9 @@ import { Component } from 'react';
 
 import styles from './Input.module.css';
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
-};
+}
 
 export class Input extends Component<Props> {
   render() {

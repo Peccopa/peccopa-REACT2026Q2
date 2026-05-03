@@ -1,5 +1,3 @@
-import type { Props, State } from './ErrorBoundary.types';
-
 import { Component } from 'react';
 import { Layout } from '@/widgets';
 import { Button } from '@/shared';
@@ -7,6 +5,14 @@ import { Text } from '@/shared';
 
 import styles from './ErrorBoundary.module.css';
 import { TEXTS } from '../config/texts';
+
+interface Props {
+  children: React.ReactNode;
+}
+
+interface State {
+  hasError: boolean;
+}
 
 export class ErrorBoundary extends Component<Props, State> {
   state: State = { hasError: false };

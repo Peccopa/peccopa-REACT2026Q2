@@ -1,11 +1,27 @@
-import type { Props, State, Store } from './SearchPanel.types';
+import type { ProductsResponse } from '@/shared/api/products/products.types';
 
 import { Component } from 'react';
 import { SearchForm } from '@/features/search';
-import { storage } from '@/shared/lib/localStorage';
-import { STORE_KEY } from '@/shared';
+
 import { fetchProducts } from '@/shared/api';
+import { storage } from '@/shared/lib/localStorage';
+
+import { STORE_KEY } from '@/shared';
 import { SEARCH_PAGE_LIMIT } from '../config/constants';
+
+interface State {
+  value: string;
+}
+
+interface Store {
+  search: string;
+}
+
+interface Props {
+  onSearch: (products: ProductsResponse) => void;
+  onLoading: (value: boolean) => void;
+  onError: (value: boolean) => void;
+}
 
 export class SearchPanel extends Component<Props, State> {
   private isFirstSearch = true;

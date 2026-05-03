@@ -1,9 +1,11 @@
-import type { Props } from './ErrorButton.types';
-
 import { Component } from 'react';
 import { Button } from '@/shared';
 
 import { TEXTS } from '../config/texts';
+
+interface Props {
+  onClick: () => void;
+}
 
 export class ErrorButton extends Component<Props> {
   render() {

@@ -1,10 +1,14 @@
-import type { Props } from './SearchForm.types';
-
 import React, { Component } from 'react';
 import { Button, Input } from '@/shared';
 
 import { TEXTS } from '../config/texts';
 import styles from './SearchForm.module.css';
+
+interface Props {
+  value: string;
+  onChange: (value: string) => void;
+  onSearch: () => void;
+}
 
 export class SearchForm extends Component<Props> {
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

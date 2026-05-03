@@ -1,10 +1,23 @@
-import type { Props, StyleWithVars } from './ResultsPanel.types';
+import type { CSSProperties } from 'react';
+import type { Product } from '@/shared/api/products/products.types';
 
 import { Component } from 'react';
+import { LoadIndicator } from '@/shared/ui';
 import { Text } from '@/shared/ui';
 
 import styles from './ResultsPanel.module.css';
-import { LoadIndicator } from '@/shared/ui';
+
+interface CSSVars {
+  [key: `--${string}`]: string | number;
+}
+
+interface StyleWithVars extends CSSProperties, CSSVars {}
+
+interface Props {
+  products: Product[];
+  isLoading: boolean;
+  isError: boolean;
+}
 
 export class ResultsPanel extends Component<Props> {
   getStyle = (index: number): StyleWithVars => ({

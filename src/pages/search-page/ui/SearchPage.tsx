@@ -1,12 +1,19 @@
-import type { State } from './SearchPage.types';
+import type { Product } from '@/shared/api/products/products.types';
+import type { ProductsResponse } from '@/shared/api/products/products.types';
 
 import { Component } from 'react';
-
 import { Layout, SearchPanel } from '@/widgets';
 import { ErrorButton } from '@/features';
-import { TEXTS } from '../config/texts';
-import type { ProductsResponse } from '@/shared/api/products/products.types';
 import { ResultsPanel } from '@/widgets/results-panel';
+
+import { TEXTS } from '../config/texts';
+
+interface State {
+  products: Product[] | [];
+  isLoading: boolean;
+  isError: boolean;
+  shouldCrash: boolean;
+}
 
 export class SearchPage extends Component {
   state: State = {

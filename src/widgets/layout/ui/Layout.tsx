@@ -1,8 +1,11 @@
-import type { Props } from './Layout.types';
-
 import { Component } from 'react';
 
 import styles from './Layout.module.css';
+
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+}
 
 export class Layout extends Component<Props> {
   render() {
