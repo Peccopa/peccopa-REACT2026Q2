@@ -1,0 +1,12 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-12);
+
+  max-width: var(--container);
+  min-height: 100vh;
+
+  padding: var(--space-4);
+}

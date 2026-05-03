@@ -1,0 +1,4 @@
+.errorBoundary {
+  justify-content: center;
+  gap: var(--space-6);
+}
