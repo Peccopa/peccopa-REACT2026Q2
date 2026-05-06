@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { SearchForm } from '@/features/search';
 
 import { fetchProducts } from '@/shared/api';
-import { storage } from '@/shared/lib/localStorage';
+import { storage } from '@/shared/lib';
 
 import { STORE_KEY } from '@/shared';
 import { SEARCH_PAGE_LIMIT } from '../config/constants';
