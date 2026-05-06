@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@/shared/lib/test';
+import { render, screen, userEvent } from '@/shared/lib/test';
 import { SearchForm } from './SearchForm';
 
 describe('SearchForm', () => {
@@ -11,5 +11,20 @@ describe('SearchForm', () => {
 
     expect(screen.getByRole('textbox')).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+
+  it('calls onChange when user types', async () => {
+    const user = userEvent.setup();
+
+    const onChange = vi.fn();
+    const onSearch = vi.fn();
+
+    render(<SearchForm value="" onChange={onChange} onSearch={onSearch} />);
+
+    const input = screen.getByRole('textbox');
+
+    await user.type(input, 'iphone');
+
+    expect(onChange).toHaveBeenCalled();
   });
 });
