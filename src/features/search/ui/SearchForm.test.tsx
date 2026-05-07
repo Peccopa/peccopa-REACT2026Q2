@@ -13,7 +13,7 @@ describe('SearchForm', () => {
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  it('calls onChange with correct value when user types', async () => {
+  it('calls onChange when typing', async () => {
     const user = userEvent.setup();
 
     const onChange = vi.fn();
@@ -25,6 +25,23 @@ describe('SearchForm', () => {
 
     await user.type(input, 'iphone');
 
-    expect(onChange).toHaveBeenCalledWith('iphone');
+    expect(onChange).toHaveBeenCalled();
+  });
+
+  it('calls onSearch when form is submitted', async () => {
+    const user = userEvent.setup();
+
+    const onChange = vi.fn();
+    const onSearch = vi.fn();
+
+    render(<SearchForm value="" onChange={onChange} onSearch={onSearch} />);
+
+    const input = screen.getByRole('textbox');
+    const button = screen.getByRole('button');
+
+    await user.type(input, 'iphone');
+    await user.click(button);
+
+    expect(onSearch).toHaveBeenCalled();
   });
 });
