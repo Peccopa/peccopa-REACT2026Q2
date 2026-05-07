@@ -191,4 +191,87 @@ describe('SearchPanel', () => {
       });
     });
   });
+
+  it('does not refetch if search is same as previous', async () => {
+    const user = userEvent.setup();
+
+    vi.mocked(fetchProducts).mockResolvedValue({
+      products: [],
+      total: 0,
+      skip: 0,
+      limit: 0,
+    });
+
+    render(
+      <SearchPanel onSearch={vi.fn()} onLoading={vi.fn()} onError={vi.fn()} />
+    );
+
+    const input = screen.getByRole('textbox');
+    const button = screen.getByRole('button');
+
+    await user.type(input, 'iphone');
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(fetchProducts).toHaveBeenCalledTimes(2);
+    });
+
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(fetchProducts).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  it('does not refetch when trimmed search equals previous search', async () => {
+    const user = userEvent.setup();
+
+    localStorage.setItem(STORE_KEY, JSON.stringify({ search: 'iphone' }));
+
+    vi.mocked(fetchProducts).mockResolvedValue({
+      products: [],
+      total: 0,
+      skip: 0,
+      limit: 0,
+    });
+
+    render(
+      <SearchPanel onSearch={vi.fn()} onLoading={vi.fn()} onError={vi.fn()} />
+    );
+
+    await waitFor(() => {
+      expect(fetchProducts).toHaveBeenCalledTimes(1);
+    });
+
+    const button = screen.getByRole('button');
+
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(fetchProducts).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('uses empty string when store search is missing', async () => {
+    vi.mocked(fetchProducts).mockResolvedValue({
+      products: [],
+      total: 0,
+      skip: 0,
+      limit: 0,
+    });
+
+    localStorage.setItem(STORE_KEY, JSON.stringify({}));
+
+    render(
+      <SearchPanel onSearch={vi.fn()} onLoading={vi.fn()} onError={vi.fn()} />
+    );
+
+    await waitFor(() => {
+      expect(fetchProducts).toHaveBeenCalledWith({
+        search: '',
+        limit: 0,
+        skip: 0,
+      });
+    });
+  });
 });
