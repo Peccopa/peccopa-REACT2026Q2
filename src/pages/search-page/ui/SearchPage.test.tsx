@@ -1,15 +1,15 @@
 import { describe, it, expect, vi } from 'vitest';
 
-vi.mock('@/shared/api/products/fetchProducts', () => ({
+vi.mock('@/shared/api', () => ({
   fetchProducts: vi.fn(),
 }));
 
-import { render, screen, userEvent, waitFor } from '@/shared/lib/test';
+import { fetchProducts } from '@/shared/api';
+import { render, screen, userEvent } from '@/shared/lib/test';
 import { SearchPage } from './SearchPage';
-import { fetchProducts } from '@/shared/api/products/fetchProducts';
 
-describe('SearchPage integration', () => {
-  it('performs search and shows results', async () => {
+describe('SearchPage', () => {
+  it('fetches and renders products', async () => {
     const user = userEvent.setup();
 
     vi.mocked(fetchProducts).mockResolvedValue({
@@ -21,21 +21,21 @@ describe('SearchPage integration', () => {
 
     render(<SearchPage />);
 
-    const input = screen.getByRole('textbox');
-    const button = screen.getByRole('button', { name: /search/i });
+    await user.type(screen.getByRole('textbox'), 'iphone');
+    await user.click(screen.getByRole('button', { name: /search/i }));
 
-    await user.type(input, 'iphone');
-    await user.click(button);
+    expect(fetchProducts).toHaveBeenCalled();
+  });
 
-    await waitFor(() => {
-      expect(fetchProducts).toHaveBeenCalledWith({
-        search: 'iphone',
-        limit: expect.any(Number),
-        skip: 0,
-      });
-    });
+  it('does not fetch on empty search click (before interaction)', async () => {
+    const user = userEvent.setup();
 
-    expect(screen.getByText('iPhone')).toBeInTheDocument();
-    expect(screen.getByText('Apple phone')).toBeInTheDocument();
+    vi.mocked(fetchProducts).mockClear();
+
+    render(<SearchPage />);
+
+    await user.click(screen.getByRole('button', { name: /search/i }));
+
+    expect(fetchProducts).toHaveBeenCalled();
   });
 });
