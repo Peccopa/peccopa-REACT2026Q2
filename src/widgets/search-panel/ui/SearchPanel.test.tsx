@@ -166,4 +166,29 @@ describe('SearchPanel', () => {
       })
     );
   });
+
+  it('calls fetchProducts with zero limit for empty search', async () => {
+    const user = userEvent.setup();
+
+    vi.mocked(fetchProducts).mockResolvedValue({
+      products: [],
+      total: 0,
+      skip: 0,
+      limit: 0,
+    });
+
+    render(
+      <SearchPanel onSearch={vi.fn()} onLoading={vi.fn()} onError={vi.fn()} />
+    );
+
+    await user.click(screen.getByRole('button'));
+
+    await waitFor(() => {
+      expect(fetchProducts).toHaveBeenCalledWith({
+        search: '',
+        limit: 0,
+        skip: 0,
+      });
+    });
+  });
 });
