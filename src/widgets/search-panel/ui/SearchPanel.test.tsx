@@ -121,4 +121,32 @@ describe('SearchPanel', () => {
 
     expect(store.search).toBe('iphone');
   });
+
+  it('calls onError when fetchProducts fails', async () => {
+    const user = userEvent.setup();
+
+    vi.mocked(fetchProducts).mockRejectedValue(new Error('API Error'));
+
+    const onSearch = vi.fn();
+    const onLoading = vi.fn();
+    const onError = vi.fn();
+
+    render(
+      <SearchPanel
+        onSearch={onSearch}
+        onLoading={onLoading}
+        onError={onError}
+      />
+    );
+
+    vi.clearAllMocks();
+
+    const input = screen.getByRole('textbox');
+    const button = screen.getByRole('button');
+
+    await user.type(input, 'iphone');
+    await user.click(button);
+
+    expect(onError).toHaveBeenCalledWith(true);
+  });
 });
