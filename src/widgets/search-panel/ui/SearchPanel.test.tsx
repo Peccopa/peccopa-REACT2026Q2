@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, userEvent } from '@/shared/lib/test';
+import { render, screen, userEvent, waitFor } from '@/shared/lib/test';
 
 import { SearchPanel } from './SearchPanel';
 
@@ -148,5 +148,42 @@ describe('SearchPanel', () => {
     await user.click(button);
 
     expect(onError).toHaveBeenCalledWith(true);
+  });
+
+  it('toggles loading state during search request', async () => {
+    const user = userEvent.setup();
+
+    vi.mocked(fetchProducts).mockResolvedValue({
+      products: [],
+      total: 0,
+      skip: 0,
+      limit: 0,
+    });
+
+    const onSearch = vi.fn();
+    const onLoading = vi.fn();
+    const onError = vi.fn();
+
+    render(
+      <SearchPanel
+        onSearch={onSearch}
+        onLoading={onLoading}
+        onError={onError}
+      />
+    );
+
+    vi.clearAllMocks();
+
+    const input = screen.getByRole('textbox');
+    const button = screen.getByRole('button');
+
+    await user.type(input, 'iphone');
+    await user.click(button);
+
+    expect(onLoading).toHaveBeenCalledWith(true);
+
+    await waitFor(() => {
+      expect(onLoading).toHaveBeenCalledWith(false);
+    });
   });
 });
