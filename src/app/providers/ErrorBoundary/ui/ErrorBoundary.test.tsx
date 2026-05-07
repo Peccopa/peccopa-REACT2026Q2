@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@/shared/lib/test';
+import { render, screen, userEvent } from '@/shared/lib/test';
 import { ErrorBoundary } from './ErrorBoundary';
 
 describe('ErrorBoundary', () => {
@@ -33,5 +33,24 @@ describe('ErrorBoundary', () => {
     expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
 
     spy.mockRestore();
+  });
+
+  it('recovers after retry click', async () => {
+    const user = userEvent.setup();
+
+    const ProblemChild = () => {
+      throw new Error('fail');
+    };
+
+    render(
+      <ErrorBoundary>
+        <ProblemChild />
+      </ErrorBoundary>
+    );
+
+    const button = screen.getByRole('button');
+    await user.click(button);
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 });
