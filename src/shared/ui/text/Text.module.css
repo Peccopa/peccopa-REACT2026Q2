@@ -1,0 +1,41 @@
+.text {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+}
+
+/* === Sizes === */
+
+.sm {
+  font-size: var(--fs-sm);
+}
+
+.md {
+  font-size: var(--fs-base);
+}
+
+.lg {
+  font-size: var(--fs-lg);
+}
+
+.xl {
+  font-size: var(--fs-xl);
+}
+
+.xxl {
+  font-size: var(--fs-2xl);
+}
+
+/* === Colors === */
+
+.default {
+  color: var(--color-text);
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+.accent {
+  color: var(--color-accent);
+}
