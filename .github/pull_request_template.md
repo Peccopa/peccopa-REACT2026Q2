@@ -1,80 +1,97 @@
-1. Task: [link](https://github.com/rolling-scopes-school/tasks/blob/master/react/modules/tasks/class-components.md)
+# React: Unit Testing
+
+1. Task: [link](https://github.com/rolling-scopes-school/tasks/blob/master/react/modules/tasks/unit-testing.md)
 2. Screenshot:
-3. Deploy: [link](https://peccopa.github.io/peccopa-REACT2026Q2/)
-4. Done 01.05.2026 / deadline 05.05.2026
+   <img width="993" height="583" alt="image" src="https://github.com/user-attachments/assets/6f1f6560-60f2-4442-9ab2-a87adfcc76c2" />
+
+3. Deploy: [link](https://peccopa.github.io/peccopa-REACT2026Q2/unit-testing/)
+4. Done 08.05.2026 / deadline 12.05.2026
 5. Score: 100 / 100
 
 ---
 
 ## ✅ Functional Requirements
 
-- [x] **Feature 1: Layout structure (5/5)**  
-       The application is divided into two logical sections: search (top) and results (bottom), visually separated.
+- [x] **Feature 1: Test Coverage (14/14)**
+  - statement coverage ≥ 80%
+  - branch coverage ≥ 50%
+  - function coverage ≥ 50%
+  - line coverage ≥ 50%
+  - coverage reporting configured via Vitest
 
-- [x] **Feature 2: LocalStorage (15/15)**  
-       Search value is saved and restored on page reload.
+- [x] **Feature 2: No Functional Changes (14/14)**
+  - class components preserved
+  - no conversion to functional components
+  - application behavior unchanged
 
-- [x] **Feature 3: Results display (10/10)**  
-       Each product displays title and description.
+- [x] **Feature 3: Behavior-Focused Testing (14/14)**
+  - tests focus on visible behavior
+  - no testing of internal state or lifecycle methods
+  - public API and rendered output covered
 
-- [x] **Feature 4: Initial data load (10/10)**  
-       On initial load:
-  - with search → request includes search term
-  - without search → fetch all items
+- [x] **Feature 4: API Mocking (14/14)**
+  - all API calls mocked with `vi.mock`
+  - no real network requests
+  - success and error scenarios tested
 
-- [x] **Feature 5: Search execution (20/20)**
-  - input is trimmed
-  - no request if value hasn't changed
-  - only first page is fetched
+- [x] **Feature 5: Error Handling (14/14)**
+  - API error scenarios tested
+  - ErrorBoundary behavior tested
+  - fallback UI rendering verified
 
-- [x] **Feature 6: Persistence (5/5)**  
-       Trimmed value is stored in localStorage.
+- [x] **Feature 6: User Interactions (14/14)**
+  - typing into input tested
+  - search button click tested
+  - loading states tested
+  - repeated searches and edge cases covered
 
-- [x] **Feature 7: Loading state (10/10)**  
-       Loader (spinner) is shown during API requests.
+- [x] **Feature 7: LocalStorage Functionality (16/16)**
+  - localStorage read on mount tested
+  - localStorage write after search tested
+  - empty and existing storage states covered
+  - persistence behavior verified
 
-- [x] **Feature 8: Error handling (10/10)**
-  - human-readable error message is displayed
-  - API errors handled via catch
-  - no uncaught promise errors in console
+---
 
-- [x] **Feature 9: Error Boundary (15/15)**
-  - ErrorBoundary implemented
-  - "simulate error" button added
-  - fallback UI is shown
-  - error is logged to console
+## 🧪 Test Coverage
+
+```txt
+Statements : 100%
+Branches   : 100%
+Functions  : 100%
+Lines      : 100%
+```
 
 ---
 
 ## 🧩 Technical Requirements
 
-- [x] Application is divided into logical modules/layers (FSD approach)
-- [x] All HTML content is generated via React
-- [x] Application is SPA
-- [x] Vite + React + TypeScript used, build is correct
+- [x] Vitest configured as test runner
+- [x] React Testing Library used for component testing
+- [x] Coverage thresholds configured
+- [x] Separate `.test.tsx` files created
+- [x] Test utilities extracted into shared helpers
+- [x] Husky pre-push hook runs tests
 
 ---
 
 ## ⚙️ Additional Notes
 
-- To test API errors, you should manually change the API URL to an invalid endpoint, which will return a 4xx/5xx response.
-- ErrorBoundary is used **only for render errors**, separated from API error handling.
-- Error handling split:
-  - API error → UI state (`isError`)
-  - Render error → ErrorBoundary
+- All tests are implementation-independent and compatible with future refactoring to functional components.
+- API calls are fully mocked to ensure deterministic tests.
+- ErrorBoundary behavior tested separately from API error handling.
+- Tests use semantic RTL queries (`getByRole`, `getByText`) instead of implementation details.
 
 ---
 
-## 🌐 Possible API Issues
+## 🌐 Coverage Command
 
-If data is not loading:
+```bash
+npm run test:coverage
+```
 
-- try enabling VPN (API may be region-restricted)
-- or use mock data:
+## 🌐 Run Tests
 
-```ts
-// src/shared/config/env.ts
-export const env = {
-  useMock: true,
-};
+```bash
+npm run test
 ```

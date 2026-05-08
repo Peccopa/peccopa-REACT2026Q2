@@ -11,7 +11,7 @@ vi.mock('@/shared/api', () => ({
   ),
 }));
 
-import { render, screen, waitFor } from '@/shared/lib/test';
+import { render, screen, waitFor } from '@/shared/lib/test-utils';
 import App from './App';
 
 describe('App', () => {

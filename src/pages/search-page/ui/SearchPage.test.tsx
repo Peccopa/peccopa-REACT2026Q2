@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, userEvent, waitFor } from '@/shared/lib/test';
+import { render, screen, userEvent, waitFor } from '@/shared/lib/test-utils';
 import { SearchPage } from './SearchPage';
 import { fetchProducts } from '@/shared/api';
 

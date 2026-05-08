@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, userEvent, waitFor } from '@/shared/lib/test';
+import { render, screen, userEvent, waitFor } from '@/shared/lib/test-utils';
 
 import { SearchPanel } from './SearchPanel';
 import { fetchProducts } from '@/shared/api';

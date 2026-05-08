@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, userEvent } from '@/shared/lib/test';
+import { render, screen, userEvent } from '@/shared/lib/test-utils';
 import { ErrorBoundary } from './ErrorBoundary';
 
 describe('ErrorBoundary', () => {
