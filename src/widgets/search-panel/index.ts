@@ -1,1 +1,1 @@
-export { SearchPanel } from '@/widgets/search-panel/ui/SearchPanel';
+export { SearchPanel } from './ui/SearchPanel';
