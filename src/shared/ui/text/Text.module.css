@@ -32,6 +32,10 @@
   color: var(--color-text);
 }
 
+.primary {
+  color: var(--color-primary);
+}
+
 .muted {
   color: var(--color-muted);
 }

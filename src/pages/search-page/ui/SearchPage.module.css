@@ -1,0 +1,10 @@
+.top {
+  width: 100%;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+}

@@ -1,4 +1,4 @@
-import { Footer, Layout } from '@/widgets';
+import { Footer, Header, Layout } from '@/widgets';
 import { Text } from '@/shared';
 
 import { TEXTS } from '../config/texts';
@@ -6,15 +6,16 @@ import styles from './AboutPage.module.css';
 
 export function AboutPage() {
   return (
-    <Layout className={styles.about}>
-      <Text variant="h1" size="xxl">
-        {TEXTS.heading}
-      </Text>
-      <section>
-        <Text variant="h2" size="lg">
+    <Layout>
+      <Header />
+      <section className={styles.about}>
+        <Text variant="h2" size="xl">
+          {TEXTS.heading}
+        </Text>
+        <Text variant="h3" size="lg" color="primary">
           {TEXTS.title}
         </Text>
-        <Text variant="p" className={styles.description}>
+        <Text variant="p" className={styles.description} color="muted">
           {TEXTS.description}
         </Text>
       </section>

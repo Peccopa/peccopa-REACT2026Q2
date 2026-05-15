@@ -1,0 +1,5 @@
+.header {
+  width: 100%;
+  display: flex;
+  padding: 0 var(--space-4) var(--space-4) var(--space-4);
+}

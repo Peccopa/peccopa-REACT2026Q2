@@ -6,7 +6,7 @@ import styles from './Text.module.css';
 
 type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
 type Size = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-type Color = 'default' | 'muted' | 'accent';
+type Color = 'default' | 'primary' | 'muted' | 'accent';
 
 interface Props {
   className?: string;
