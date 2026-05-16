@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Input } from '@/shared';
 
 import { TEXTS } from '../config/texts';
@@ -10,29 +10,25 @@ interface Props {
   onSearch: () => void;
 }
 
-export class SearchForm extends Component<Props> {
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.onChange(event.target.value);
+export function SearchForm({ value, onChange, onSearch }: Props) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
   };
-
-  handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    this.props.onSearch();
+    onSearch();
   };
 
-  render() {
-    return (
-      <form className={styles.searchForm} onSubmit={this.handleSubmit}>
-        <Input
-          type="text"
-          id="form-input"
-          value={this.props.value}
-          placeholder={TEXTS.searchForm.placeholder}
-          onChange={this.handleChange}
-        />
-        <Button type="submit">{TEXTS.searchForm.search}</Button>
-      </form>
-    );
-  }
+  return (
+    <form className={styles.searchForm} onSubmit={handleSubmit}>
+      <Input
+        type="text"
+        id="form-input"
+        value={value}
+        placeholder={TEXTS.searchForm.placeholder}
+        onChange={handleChange}
+      />
+      <Button type="submit">{TEXTS.searchForm.search}</Button>
+    </form>
+  );
 }
