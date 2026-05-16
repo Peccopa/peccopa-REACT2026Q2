@@ -1,10 +1,23 @@
-.top {
+.content {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
   width: 100%;
 }
 
-.controls {
+.controlsWrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
   gap: var(--space-6);
+}
+
+.resultsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1;
+  width: 100%;
 }

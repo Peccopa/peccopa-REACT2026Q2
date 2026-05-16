@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { Layout } from '@/widgets';
 import { Button } from '@/shared';
 import { Text } from '@/shared';
 
@@ -30,12 +29,12 @@ export class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <Layout className={styles.errorBoundary}>
+        <main className={styles.errorBoundary}>
           <Text variant="h1" size="xxl">
             {TEXTS.errorBoundary.title}
           </Text>
           <Button onClick={this.reset}>{TEXTS.errorBoundary.retry}</Button>
-        </Layout>
+        </main>
       );
     }
 

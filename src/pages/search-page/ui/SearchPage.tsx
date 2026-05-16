@@ -2,9 +2,8 @@ import type { Product } from '@/shared/api/products/products.types';
 import type { ProductsResponse } from '@/shared/api/products/products.types';
 
 import { Component } from 'react';
-import { Footer, Header, Layout, SearchPanel } from '@/widgets';
+import { SearchPanel, ResultsPanel } from '@/widgets';
 import { ErrorButton } from '@/features';
-import { ResultsPanel } from '@/widgets/results-panel';
 
 import { TEXTS } from '../config/texts';
 import styles from './SearchPage.module.css';
@@ -44,26 +43,23 @@ export class SearchPage extends Component {
     if (this.state.shouldCrash) throw new Error(TEXTS.simulateError.error);
 
     return (
-      <Layout>
-        <div className={styles.top}>
-          <Header />
-          <div className={styles.controls}>
-            <SearchPanel
-              onSearch={this.handleSearch}
-              onLoading={this.handleLoading}
-              onError={this.handleError}
-            />
-            <ErrorButton onClick={this.handleSimulateError} />
-          </div>
-        </div>
-        <ResultsPanel
-          products={this.state.products}
-          isLoading={this.state.isLoading}
-          isError={this.state.isError}
-        />
-
-        <Footer />
-      </Layout>
+      <main className={styles.content}>
+        <section className={styles.controlsWrapper}>
+          <SearchPanel
+            onSearch={this.handleSearch}
+            onLoading={this.handleLoading}
+            onError={this.handleError}
+          />
+          <ErrorButton onClick={this.handleSimulateError} />
+        </section>
+        <section className={styles.resultsWrapper}>
+          <ResultsPanel
+            products={this.state.products}
+            isLoading={this.state.isLoading}
+            isError={this.state.isError}
+          />
+        </section>
+      </main>
     );
   }
 }

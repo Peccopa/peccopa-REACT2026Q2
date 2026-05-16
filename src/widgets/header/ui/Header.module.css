@@ -1,5 +1,21 @@
 .header {
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 0 var(--space-4) var(--space-4) var(--space-4);
+
+  nav {
+    display: flex;
+    gap: var(--space-6);
+
+    a {
+      font-size: var(--fs-lg);
+      color: var(--color-light);
+    }
+
+    a:hover {
+      color: var(--color-muted);
+    }
+  }
 }
