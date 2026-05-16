@@ -1,5 +1,3 @@
 export const TEXTS = {
-  errorBoundaryButton: {
-    error: 'Simulate Error',
-  },
+  error: 'Simulate Error',
 };

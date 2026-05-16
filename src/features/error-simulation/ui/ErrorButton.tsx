@@ -1,18 +1,13 @@
-import { Component } from 'react';
+import type { MouseEventHandler } from 'react';
+
 import { Button } from '@/shared';
 
 import { TEXTS } from '../config/texts';
 
 interface Props {
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-export class ErrorButton extends Component<Props> {
-  render() {
-    return (
-      <Button onClick={this.props.onClick}>
-        {TEXTS.errorBoundaryButton.error}
-      </Button>
-    );
-  }
+export function ErrorButton({ onClick }: Props) {
+  return <Button onClick={onClick}>{TEXTS.error}</Button>;
 }
