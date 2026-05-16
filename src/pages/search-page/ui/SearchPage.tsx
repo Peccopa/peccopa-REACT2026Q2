@@ -1,65 +1,61 @@
-import type { Product } from '@/shared/api/products/products.types';
-import type { ProductsResponse } from '@/shared/api/products/products.types';
+import type {
+  Product,
+  ProductsResponse,
+} from '@/shared/api/products/products.types';
 
-import { Component } from 'react';
+import { useState } from 'react';
+
 import { SearchPanel, ResultsPanel } from '@/widgets';
 import { ErrorButton } from '@/features';
 
 import { TEXTS } from '../config/texts';
 import styles from './SearchPage.module.css';
 
-interface State {
-  products: Product[] | [];
-  isLoading: boolean;
-  isError: boolean;
-  shouldCrash: boolean;
-}
+export function SearchPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [shouldCrash, setShouldCrash] = useState(false);
 
-export class SearchPage extends Component {
-  state: State = {
-    products: [],
-    isLoading: false,
-    isError: false,
-    shouldCrash: false,
+  const handleSimulateError = () => {
+    setShouldCrash(true);
   };
 
-  handleSimulateError = () => {
-    this.setState({ shouldCrash: true });
+  const handleSearch = (products: ProductsResponse) => {
+    setProducts(products.products);
   };
 
-  handleSearch = (products: ProductsResponse) => {
-    this.setState({ products: products.products });
+  const handleLoading = (value: boolean) => {
+    setIsLoading(value);
   };
 
-  handleLoading = (isLoading: boolean) => {
-    this.setState({ isLoading });
+  const handleError = (value: boolean) => {
+    setIsError(value);
   };
 
-  handleError = (isError: boolean) => {
-    this.setState({ isError });
-  };
-
-  render() {
-    if (this.state.shouldCrash) throw new Error(TEXTS.simulateError.error);
-
-    return (
-      <main className={styles.content}>
-        <section className={styles.controlsWrapper}>
-          <SearchPanel
-            onSearch={this.handleSearch}
-            onLoading={this.handleLoading}
-            onError={this.handleError}
-          />
-          <ErrorButton onClick={this.handleSimulateError} />
-        </section>
-        <section className={styles.resultsWrapper}>
-          <ResultsPanel
-            products={this.state.products}
-            isLoading={this.state.isLoading}
-            isError={this.state.isError}
-          />
-        </section>
-      </main>
-    );
+  if (shouldCrash) {
+    throw new Error(TEXTS.simulateError.error);
   }
+
+  return (
+    <main className={styles.content}>
+      <section className={styles.controlsWrapper}>
+        <SearchPanel
+          onSearch={handleSearch}
+          onLoading={handleLoading}
+          onError={handleError}
+        />
+
+        <ErrorButton onClick={handleSimulateError} />
+      </section>
+
+      <section className={styles.resultsWrapper}>
+        <ResultsPanel
+          products={products}
+          isLoading={isLoading}
+          isError={isError}
+        />
+      </section>
+    </main>
+  );
 }
