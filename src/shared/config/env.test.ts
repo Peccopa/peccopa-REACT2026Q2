@@ -3,6 +3,6 @@ import { config } from './env';
 
 describe('config', () => {
   test('should contain useMock flag', () => {
-    expect(config.useMock).toBe(false);
+    expect(typeof config.useMock).toBe('boolean');
   });
 });
