@@ -1,11 +1,11 @@
 import type { CSSProperties } from 'react';
 import type { Product } from '@/shared/api/products/products.types';
 
-import { Component } from 'react';
 import { LoadIndicator } from '@/shared/ui';
 import { Text } from '@/shared/ui';
 
 import styles from './ResultsPanel.module.css';
+import { TEXTS } from '../config/texts';
 
 interface CSSVars {
   [key: `--${string}`]: string | number;
@@ -19,35 +19,42 @@ interface Props {
   isError: boolean;
 }
 
-export class ResultsPanel extends Component<Props> {
-  getStyle = (index: number): StyleWithVars => ({
-    '--i': index,
-  });
+const getStyle = (index: number): StyleWithVars => ({
+  '--i': index,
+});
 
-  render() {
-    const { products, isLoading, isError } = this.props;
+export function ResultsPanel({ products, isLoading, isError }: Props) {
+  if (isLoading) return <LoadIndicator />;
 
-    if (isLoading) return <LoadIndicator />;
-    if (isError) return <h3>Something went wrong. Please try again.</h3>;
-    if (products.length === 0) return <h3>No results</h3>;
-
+  if (isError) {
     return (
-      <ul className={styles.products}>
-        {products.map((product, index) => (
-          <li
-            className={styles.product}
-            key={product.id}
-            style={this.getStyle(index)}
-          >
-            <Text variant="h4" className={styles.productTitle}>
-              {product.title}
-            </Text>
-            <Text className={styles.productDescription}>
-              {product.description}
-            </Text>
-          </li>
-        ))}
-      </ul>
+      <Text variant="h3" size="xl">
+        {TEXTS.error}
+      </Text>
     );
   }
+
+  if (products.length === 0) {
+    return (
+      <Text variant="h3" size="xl">
+        {TEXTS.results}
+      </Text>
+    );
+  }
+
+  return (
+    <ul className={styles.products}>
+      {products.map((product, index) => (
+        <li key={product.id} className={styles.product} style={getStyle(index)}>
+          <Text variant="h4" className={styles.productTitle}>
+            {product.title}
+          </Text>
+
+          <Text className={styles.productDescription}>
+            {product.description}
+          </Text>
+        </li>
+      ))}
+    </ul>
+  );
 }
